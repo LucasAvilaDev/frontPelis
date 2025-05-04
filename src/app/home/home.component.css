@@ -1,0 +1,143 @@
+body {
+    font-family: sans-serif;
+    background-color: #141414;
+    color: #fff;
+    margin: 0;
+}
+
+.main-header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 2rem;
+    color: #e50914;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: #b3b3b3;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+.hero {
+    background-image: url('https://via.placeholder.com/1920x1080/222/444?Text=Imagen+Hero'); /* Reemplaza con tu imagen */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 10rem 2rem;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(20,20,20, 1) 0%, rgba(20,20,20, 0) 60%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin-bottom: 5rem;
+}
+
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    color: #ccc;
+}
+
+.hero-buttons button {
+    background-color: rgba(51, 51, 51, 0.5);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    margin-right: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.hero-buttons .play-button {
+    background-color: #fff;
+    color: #000;
+}
+
+.section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.movie-list {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.movie-card {
+    width: 200px;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #b3b3b3;
+}

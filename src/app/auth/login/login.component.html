@@ -1,0 +1,13 @@
+<h2 class="mt-4">Iniciar sesión</h2>
+<form (submit)="login(); $event.preventDefault();">
+  <div class="mb-3">
+    <label for="correoLogin" class="form-label">Correo</label>
+    <input type="email" class="form-control" id="correoLogin" [(ngModel)]="correo_electronico" name="email" required>
+  </div>
+  <div class="mb-3">
+    <label for="passwordLogin" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="passwordLogin" [(ngModel)]="password" name="password" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Ingresar</button>
+  <p *ngIf="error" class="text-danger mt-2">{{ error }}</p>
+</form>
