@@ -1,12 +1,12 @@
 // src/app/models/pelicula.model.ts
 export interface Pelicula {
-    id: string;
+    id_pelicula: number;
     titulo: string;
     descripcion: string;
     director: string;
     anio: number;
     duracion: number;
-    imagenUrl: string;
+    fotoPelicula: string;
     id_categoria: number;
 
   }

@@ -141,3 +141,25 @@ footer {
     padding: 2rem;
     color: #b3b3b3;
 }
+
+
+.movie-card-link {
+    display: block; /* Hace que el enlace ocupe todo el ancho de su contenedor */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    color: inherit; /* Hereda el color del texto del padre */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+  }
+  
+  .movie-card {
+    /* Tus estilos existentes para la tarjeta de película */
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    /* ... otros estilos ... */
+  }
+  
+  .movie-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* ... otros estilos ... */

@@ -1,0 +1,24 @@
+<h2>{{ esEdicion ? 'Editar' : 'Crear' }} Película</h2>
+<form (ngSubmit)="guardar()">
+  <label>Título:</label>
+  <input [(ngModel)]="pelicula.titulo" name="titulo" required />
+    <label>Descripción:</label>
+    <textarea [(ngModel)]="pelicula.descripcion" name="descripcion" required></textarea>
+    <label>Género:</label>
+    <!--
+        <select [(ngModel)]="pelicula.id_categoria" name="id_categoria" required>
+            <option *ngFor="let categoria of categorias" [value]="categoria.id_categoria">
+                {{ categoria.nombre }}
+            </option>
+        </select>
+        -->
+    <label>Director:</label>
+    <input [(ngModel)]="pelicula.director" name="director" required />
+    <label>Duración:</label>
+    <input [(ngModel)]="pelicula.duracion" name="duracion" required />
+    <label>Imagen URL:</label>
+    <input [(ngModel)]="pelicula.fotoPelicula" name="imagenUrl" required />
+
+    <button type="submit">Guardar</button>
+    <button type="button" (click)="volver()">Cancelar</button>
+</form>

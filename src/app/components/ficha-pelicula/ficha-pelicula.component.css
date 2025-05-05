@@ -1,0 +1,82 @@
+.ficha-tecnica-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: sans-serif; /* O la fuente que prefieras */
+    color: #333; /* Color de texto general */
+  }
+  
+  .poster-sinopsis {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .poster {
+    max-width: 200px; /* Ajusta el tamaño del póster según necesites */
+  }
+  
+  .poster img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px; /* Opcional: bordes redondeados */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
+  }
+  
+  .sinopsis {
+    flex-grow: 1;
+  }
+  
+  .sinopsis h3 {
+    color: #007bff; /* Un color para el título de la sinopsis */
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .titulo-pelicula {
+    font-size: 2em;
+    color: #555;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee; /* Línea separadora opcional */
+    padding-bottom: 10px;
+  }
+  
+  .detalle {
+    display: flex;
+    margin-bottom: 8px;
+  }
+  
+  .etiqueta {
+    font-weight: bold;
+    width: 150px; /* Ajusta el ancho de la etiqueta según necesites */
+    color: #777;
+  }
+  
+  .valor {
+    flex-grow: 1;
+  }
+  
+  .valor a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .valor a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Opcional: Estilos para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .poster-sinopsis {
+      flex-direction: column;
+    }
+  
+    .poster {
+      max-width: 150px;
+      margin-bottom: 15px;
+    }
+  
+    .etiqueta {
+      width: 120px;
+    }
+  }
