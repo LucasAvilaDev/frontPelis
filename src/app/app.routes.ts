@@ -10,9 +10,9 @@ import { AuthGuardService } from './guards/auth-guard';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent, canActivate:[RoleGuardService], data: { expectedRole: 'admin' }},
-  { path: 'pelicula/:id', component: FichaPeliculaComponent,canActivate:[RoleGuardService], data: { expectedRole: 'cliente' } },
-  { path: 'crear', component: PeliculaFormularioComponent,  canActivate:[RoleGuardService], data: { expectedRole: 'admin' }},
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuardService]},
+  { path: 'pelicula/:id', component: FichaPeliculaComponent, canActivate:[AuthGuardService]},
+  { path: 'crear', component: PeliculaFormularioComponent, canActivate:[RoleGuardService], data: { expectedRole: 'admin' }},
   { path: 'editar/:id', component: PeliculaFormularioComponent,  canActivate:[RoleGuardService], data: { expectedRole: 'admin' }},
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

@@ -1,35 +1,36 @@
 <div class="ficha-tecnica-container">
-    <div class="poster-sinopsis">
-      <div class="poster">
-        <img [src]="pelicula?.fotoPelicula" [alt]="pelicula?.titulo">
-      </div>
-      <div class="sinopsis">
-        <h3>Sinopsis de la Película</h3>
-        <p>{{ pelicula?.descripcion }}</p>
-      </div>
+  <div class="poster-sinopsis">
+    <div class="poster">
+      <img [src]="pelicula?.fotoPelicula" [alt]="pelicula?.titulo">
     </div>
-  
-    <div class="detalles-pelicula">
-      <h2 class="titulo-pelicula">{{ pelicula?.titulo }}</h2>
+    <div class="sinopsis">
+      <h3>Sinopsis de la Película</h3>
+      <p>{{ pelicula?.descripcion }}</p>
+    </div>
+  </div>
+
+  <div class="detalles-pelicula">
+    <h2 class="titulo-pelicula">{{ pelicula?.titulo }}</h2>
 
 
-      <div class="detalle">
-        <span class="etiqueta">Género:</span>
-        <span class="valor">{{ pelicula?.id_categoria }}</span>
-      </div>
-  
-      <div class="detalle">
-        <span class="etiqueta">Director:</span>
-        <span class="valor">{{ pelicula?.director }}</span>
-      </div>
-  
-  
-      <div class="detalle">
-        <span class="etiqueta">Duración:</span>
-        <span class="valor">{{ pelicula?.duracion }}</span>
-      </div>
-      <button [routerLink]="'/editar/'+(pelicula?.id_pelicula || '')">Editar
-        editar-pelicula
-            </button>
-  
+    <div class="detalle">
+      <span class="etiqueta">Género:</span>
+      <span class="valor">{{ pelicula?.id_categoria }}</span>
+    </div>
+
+    <div class="detalle">
+      <span class="etiqueta">Director:</span>
+      <span class="valor">{{ pelicula?.director }}</span>
+    </div>
+
+
+    <div class="detalle">
+      <span class="etiqueta">Duración:</span>
+      <span class="valor">{{ pelicula?.duracion }}</span>
+    </div>
+    <button [routerLink]="'/editar/'+(pelicula?.id_pelicula || '')" class="btn btn-primary">Editar
+    </button>
+
+    <button (click)="eliminarPelicula()" class="btn btn-danger">Eliminar</button>
+
   </div>

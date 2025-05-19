@@ -45,6 +45,7 @@ export class PeliculaFormularioComponent {
     obs.subscribe(() => this.router.navigateByUrl('/'));
   }
 
+
   volver() {
     this.router.navigateByUrl('/');
   }
