@@ -6,10 +6,12 @@ import { FichaPeliculaComponent } from './components/ficha-pelicula/ficha-pelicu
 import { PeliculaFormularioComponent } from './components/pelicula-formulario/pelicula-formulario.component';
 import { RoleGuardService } from './guards/role-guard';
 import { AuthGuardService } from './guards/auth-guard'; 
+import { CatalogoComponent } from './components/catalogo/catalogo.component';
   
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'catalogo', component: CatalogoComponent, canActivate:[AuthGuardService]},
   { path: 'home', component: HomeComponent, canActivate:[AuthGuardService]},
   { path: 'pelicula/:id', component: FichaPeliculaComponent, canActivate:[AuthGuardService]},
   { path: 'crear', component: PeliculaFormularioComponent, canActivate:[RoleGuardService], data: { expectedRole: 'admin' }},

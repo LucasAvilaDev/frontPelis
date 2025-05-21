@@ -1,0 +1,10 @@
+    <h2 class="section-title">Catalogo</h2>
+    <div class="movie-list">
+        <a *ngFor="let pelicula of peliculas | async"
+           [routerLink]="['/pelicula', pelicula.id_pelicula]"
+           class="movie-card-link">
+            <div class="movie-card">
+                <img [src]="pelicula.fotoPelicula" [alt]="pelicula.titulo">
+                </div>
+        </a>
+    </div>

@@ -3,10 +3,10 @@
         <h1 class="logo">MiFlix</h1>
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Series</a></li>
-                <li><a href="#">Películas</a></li>
-                <li><a href="#">Mi lista</a></li>
+                <li><a [routerLink]="['/home']">Inicio</a></li>
+                <li><a [routerLink]="['/catalogo']">Catalogo</a></li>
+                <li><a [routerLink]="['/favoritas']">Favoritas</a></li>
+                <li><a [routerLink]="['/logout']">Cerrar Sesion</a></li>
             </ul>
         </nav>
     </div>
@@ -25,23 +25,6 @@
 </section>
 
 <section class="section">
-    <h2 class="section-title">Tendencias</h2>
-    <div class="movie-list">
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300/222/fff?Text=Película+1" alt="Película 1">
-        </div>
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300/222/fff?Text=Película+2" alt="Película 2">
-        </div>
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300/222/fff?Text=Película+3" alt="Película 3">
-        </div>
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300/222/fff?Text=Película+4" alt="Película 4">
-        </div>
-    </div>
-</section>
-<section class="section">
     <h2 class="section-title">Películas Recomendadas</h2>
     <div class="movie-list">
         <a *ngFor="let pelicula of peliculas | async"
@@ -52,23 +35,6 @@
                 </div>
         </a>
     </div>
-</section>
-<section class="section">
-    <h2 class="section-title">Populares en MiFlix</h2>
-    <div class="movie-list">
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300/333/eee?Text=Serie+1" alt="Serie 1">
-        </div>
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300/333/eee?Text=Serie+2" alt="Serie 2">
-        </div>
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300/333/eee?Text=Serie+3" alt="Serie 3">
-        </div>
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300/333/eee?Text=Serie+4" alt="Serie 4">
-        </div>
-        </div>
 </section>
 
 <footer>

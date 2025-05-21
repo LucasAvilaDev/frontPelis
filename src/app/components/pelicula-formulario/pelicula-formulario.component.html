@@ -1,24 +1,58 @@
-<h2>{{ esEdicion ? 'Editar' : 'Crear' }} Película</h2>
-<form (ngSubmit)="guardar()">
-  <label>Título:</label>
-  <input [(ngModel)]="pelicula.titulo" name="titulo" required />
-    <label>Descripción:</label>
-    <textarea [(ngModel)]="pelicula.descripcion" name="descripcion" required></textarea>
-    <label>Género:</label>
-    <!--
-        <select [(ngModel)]="pelicula.id_categoria" name="id_categoria" required>
-            <option *ngFor="let categoria of categorias" [value]="categoria.id_categoria">
-                {{ categoria.nombre }}
-            </option>
-        </select>
+<!--
+       
         -->
-    <label>Director:</label>
-    <input [(ngModel)]="pelicula.director" name="director" required />
-    <label>Duración:</label>
-    <input [(ngModel)]="pelicula.duracion" name="duracion" required />
-    <label>Imagen URL:</label>
-    <input [(ngModel)]="pelicula.fotoPelicula" name="imagenUrl" required />
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 bg-dark text-white border-0">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 text-danger">
+                {{ esEdicion ? 'Editar' : 'Crear' }} Película
+            </h2>
+            <form (ngSubmit)="guardar()">
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título:</label>
+                    <input type="text" class="form-control bg-secondary text-white border-0" id="titulo"
+                        [(ngModel)]="pelicula.titulo" name="titulo" required />
+                </div>
 
-    <button type="submit">Guardar</button>
-    <button type="button" (click)="volver()">Cancelar</button>
-</form>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción:</label>
+                    <textarea class="form-control bg-secondary text-white border-0" id="descripcion"
+                        [(ngModel)]="pelicula.descripcion" name="descripcion" rows="4" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="director" class="form-label">Director:</label>
+                    <input type="text" class="form-control bg-secondary text-white border-0" id="director"
+                        [(ngModel)]="pelicula.director" name="director" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="duracion" class="form-label">Duración (minutos):</label>
+                    <input type="number" class="form-control bg-secondary text-white border-0" id="duracion"
+                        [(ngModel)]="pelicula.duracion" name="duracion" required />
+                </div>
+
+                <div class="mb-4">
+                    <label for="imagenUrl" class="form-label">URL de la Imagen:</label>
+                    <input type="url" class="form-control bg-secondary text-white border-0" id="imagenUrl"
+                        [(ngModel)]="pelicula.fotoPelicula" name="imagenUrl" required />
+                </div>
+
+                <div class="mb-4">
+                    <label for="categoria" class="form-label">Categoría:</label>
+                    <select class="form-select bg-secondary text-white border-0" id="categoria"
+                        [(ngModel)]="pelicula.id_categoria" name="id_categoria" required>
+                        <option [ngValue]="0" disabled>Seleccione una categoría</option>
+                        <option *ngFor="let categoria of categorias" [ngValue]="categoria.id_categoria">
+                            {{categoria.nombre}}</option>
+                    </select>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-danger btn-lg me-md-2">Guardar</button>
+                    <button type="button" class="btn btn-secondary btn-lg" (click)="volver()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

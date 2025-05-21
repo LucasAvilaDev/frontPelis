@@ -1,0 +1,76 @@
+/* General Body and Container Styles */
+body {
+    font-family: sans-serif;
+    background-color: #141414;
+    margin: 0;
+}
+
+.section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Movie List and Card Styles */
+.movie-list {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    padding-bottom: 1rem; /* Adds some space below the scrollbar */
+    /* Optional: Add a subtle scrollbar style for better aesthetics */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #e50914 #333; /* Firefox */
+}
+
+/* For Webkit browsers (Chrome, Safari) */
+.movie-list::-webkit-scrollbar {
+    height: 8px; /* Height of the horizontal scrollbar */
+}
+
+.movie-list::-webkit-scrollbar-track {
+    background: #333; /* Color of the scrollbar track */
+    border-radius: 10px;
+}
+
+.movie-list::-webkit-scrollbar-thumb {
+    background-color: #e50914; /* Color of the scrollbar thumb */
+    border-radius: 10px;
+    border: 2px solid #333; /* Padding around the thumb */
+}
+
+
+.movie-card-link {
+    display: block; /* Makes the entire card clickable */
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Inherits text color from parent */
+    cursor: pointer; /* Changes cursor on hover to indicate clickable */
+    margin-right: 0.5rem; /* Space between movie cards */
+    flex-shrink: 0; /* Prevents cards from shrinking */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.movie-card-link:hover {
+    transform: scale(1.05); /* Slightly enlarge card on hover */
+    z-index: 5; /* Brings the hovered card to the front */
+}
+
+.movie-card {
+    width: 200px; /* Fixed width for each movie card */
+    border-radius: 5px;
+    overflow: hidden; /* Ensures image corners are rounded */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    background-color: #222; /* Background for the card if image doesn't fill entirely */
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Removes extra space below image */
+    object-fit: cover; /* Ensures the image covers the area, cropping if necessary */
+    min-height: 300px; /* Example: Ensures a consistent height for movie posters */
+    max-height: 300px; /* Example: Ensures a consistent height for movie posters */
+}
