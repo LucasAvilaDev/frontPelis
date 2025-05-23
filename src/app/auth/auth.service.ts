@@ -3,14 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginRequest } from './models/login-request.model';
 import { JwtHelperService } from '@auth0/angular-jwt'; // 👈 importá esto
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5080/api/auth'; // ajustá al puerto correcto
-  private jwtHelper = new JwtHelperService(); // 👈 inicializalo así
+  private apiUrl = environment.apiUrl+'/auth';
+  private jwtHelper = new JwtHelperService(); 
 
   constructor(private http: HttpClient) {}
 
@@ -23,10 +24,7 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    // Check whether the token is expired and return
-    // true or false
-    
+    const token = localStorage.getItem('token');  
     return !this.jwtHelper.isTokenExpired(token);
   }
 }

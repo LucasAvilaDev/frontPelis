@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CategoriaService {
   api = environment.apiUrl+'/categoria'
-  private http = inject(HttpClient); // ¡Inyecta HttpClient aquí!
+  private http = inject(HttpClient);
 
   constructor() { }
 
