@@ -7,6 +7,7 @@ import { PeliculaFormularioComponent } from './components/pelicula-formulario/pe
 import { RoleGuardService } from './guards/role-guard';
 import { AuthGuardService } from './guards/auth-guard'; 
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
+import { FavoritasComponent } from './components/favoritas/favoritas.component';
   
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'pelicula/:id', component: FichaPeliculaComponent, canActivate:[AuthGuardService]},
   { path: 'crear', component: PeliculaFormularioComponent, canActivate:[RoleGuardService], data: { expectedRole: 'admin' }},
   { path: 'editar/:id', component: PeliculaFormularioComponent,  canActivate:[RoleGuardService], data: { expectedRole: 'admin' }},
+  { path: 'favoritas', component: FavoritasComponent, canActivate:[AuthGuardService] },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
  

@@ -1,0 +1,12 @@
+.pelicula-card {
+  margin: 1rem;
+}
+
+.pelicula-card-contenedor {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}

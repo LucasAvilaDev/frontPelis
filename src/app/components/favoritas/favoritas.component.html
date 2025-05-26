@@ -1,0 +1,32 @@
+<div class="favoritas-container" *ngIf="!cargando; else cargandoTemplate">
+
+  <h2>Mis Favoritas</h2>
+
+  <div *ngIf="favoritas.length === 0">
+    <p>No tenés favoritas todavía.</p>
+  </div>
+
+
+  <div class="row g-4">
+    <div *ngFor="let item of favoritas" class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card position-relative h-100">        
+
+        <!-- Imagen -->
+        <img [src]="item.fotoPelicula" class="card-img-top" [alt]="item.titulo">
+
+        <!-- Contenido -->
+        <div class="card-body">
+          <h5 class="card-title">{{ item.titulo }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #cargandoTemplate>
+  <p>Cargando favoritas...</p>
+</ng-template>
+
+
+

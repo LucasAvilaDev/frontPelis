@@ -1,10 +1,26 @@
-    <h2 class="section-title">Catalogo</h2>
-    <div class="movie-list">
-        <a *ngFor="let pelicula of peliculas | async"
-           [routerLink]="['/pelicula', pelicula.id_pelicula]"
-           class="movie-card-link">
-            <div class="movie-card">
-                <img [src]="pelicula.fotoPelicula" [alt]="pelicula.titulo">
-                </div>
-        </a>
+<div *ngIf="peliculas$ | async as peliculas" class="container mt-4">
+  <div class="row g-4">
+    <div *ngFor="let pelicula of peliculas" class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card position-relative h-100">
+        <!-- Estrellita -->
+        <button (click)="toggleFavorita(pelicula)" class="btn position-absolute top-0 end-0 m-2 p-0">
+          <span 
+            [class.text-warning]="pelicula.favorita" 
+            [class.text-secondary]="!pelicula.favorita" 
+            style="font-size: 1.5rem;"
+          >
+            ★
+          </span>
+        </button>
+
+        <!-- Imagen -->
+        <img [src]="pelicula.fotoPelicula" class="card-img-top" [alt]="pelicula.titulo">
+
+        <!-- Contenido -->
+        <div class="card-body">
+          <h5 class="card-title">{{ pelicula.titulo }}</h5>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
