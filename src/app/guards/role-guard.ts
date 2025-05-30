@@ -29,19 +29,22 @@ export class RoleGuardService implements CanActivate {
     console.log('Token:', token);
 
     if (!token) {
-      this.router.navigate(['login']);
+      this.router.navigate(['home']);
       return false;
     }
 
     const tokenPayload = jwtDecode<MyJwtPayload>(token);
-    const actualRoleInToken = tokenPayload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    console.log(jwtDecode(token));
 
+    const actualRoleInToken = tokenPayload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    console.log('RoleGuardService: actualRoleInToken:', actualRoleInToken);
+    console.log('RoleGuardService: expectedRole:', expectedRole);
 
     if (
       !this.auth.isAuthenticated() || 
       actualRoleInToken !== expectedRole // o tokenPayload.tipo
     ) {
-      this.router.navigate(['login']);
+      this.router.navigate(['home']);
       return false;
     }
 
