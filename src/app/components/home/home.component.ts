@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core'; // Importa OnInit
 import { PeliculaService } from '../../services/pelicula.service';
 import { Pelicula } from '../../models/pelicula.model';
 import { Observable } from 'rxjs';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +16,16 @@ import { RouterModule } from '@angular/router';
 export class HomeComponent implements OnInit { // Implementa OnInit
   peliculas!: Observable<Pelicula[]>; // Declara peliculas$ como Observable
 
-  constructor(private peliculaService: PeliculaService) {}
+
+  constructor(private router: Router, private peliculaService: PeliculaService) {}
 
   ngOnInit(): void {
     this.peliculas = this.peliculaService.obtenerPeliculas();
+  }
+
+  logout() {
+    localStorage.clear()
+    this.router.navigate(['/login']);
   }
 }
 
