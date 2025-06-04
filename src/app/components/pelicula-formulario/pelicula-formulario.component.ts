@@ -29,11 +29,10 @@ export class PeliculaFormularioComponent implements OnInit { // Implementa OnIni
     id_categoria: 0
   };
   esEdicion = false;
-  categorias : any[] = []; // Inicializa como un array vacío para evitar errores de tipo si no hay datos inicialmente
+  categorias : any[] = []; 
 
 
   ngOnInit() {
-    // Llama a obtenerCategorias() siempre, para que estén disponibles tanto en creación como en edición
     this.obtenerCategorias();
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -41,8 +40,6 @@ export class PeliculaFormularioComponent implements OnInit { // Implementa OnIni
       this.esEdicion = true;
       this.peliculaService.getMovie(id).subscribe(data => {
         this.pelicula = data;
-        // Si la película se carga después de las categorías, asegúrate de que el select se actualice
-        // Esto es automático con [(ngModel)] si pelicula.id_categoria coincide con una opción
       });
     }
   }
@@ -52,7 +49,7 @@ export class PeliculaFormularioComponent implements OnInit { // Implementa OnIni
       ? this.peliculaService.actualizarPelicula(this.pelicula.id_pelicula, this.pelicula)
       : this.peliculaService.agregarPelicula(this.pelicula);
 
-    obs.subscribe(() => this.router.navigateByUrl('/home'));
+    obs.subscribe(() => this.router.navigateByUrl('/admin/peliculas'));
   }
 
   obtenerCategorias(){
@@ -69,6 +66,6 @@ export class PeliculaFormularioComponent implements OnInit { // Implementa OnIni
   }
 
   volver() {
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/admin/peliculas');
   }
 }

@@ -27,12 +27,17 @@ export class LoginComponent {
           console.log(res)
           localStorage.setItem('token', res.token);
           localStorage.setItem('id_usuario', res.id_usuario.toString());
-          this.router.navigate(['/home']);
+          if (res.tipo === 'admin') {
+          this.router.navigate(['/admin']);
+          }
+          else {
+            this.router.navigate(['/home']);
+          }
         },
         error: () => {
           this.error = 'Credenciales inválidas';
         }
-      });
+      })
   }
 
   

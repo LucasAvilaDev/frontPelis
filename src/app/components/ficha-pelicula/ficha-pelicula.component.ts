@@ -30,22 +30,9 @@ export class FichaPeliculaComponent implements OnInit {
       },
       (error) => {
         console.error('Error al obtener la película', error);
-        // Aquí podrías mostrar un mensaje de error al usuario
       }
     );
   }
 
-    eliminarPelicula() {
-    if (!this.pelicula?.id_pelicula) return;
 
-    const confirmar = confirm(`¿Estás seguro de que deseas eliminar "${this.pelicula.titulo}"?`);
-    if (confirmar) {
-      this.peliculaService.eliminarPelicula(this.pelicula.id_pelicula).subscribe(() => {
-        alert('Película eliminada correctamente');
-        this.router.navigate(['/home']); // redirige a la lista
-      }, error => {
-        alert('Ocurrió un error al eliminar la película');
-      });
-    }
-  }
 }
