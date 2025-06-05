@@ -28,7 +28,7 @@ export class LoginComponent {
           localStorage.setItem('token', res.token);
           localStorage.setItem('id_usuario', res.id_usuario.toString());
           if (res.tipo === 'admin') {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/admin/peliculas']);
           }
           else {
             this.router.navigate(['/home']);

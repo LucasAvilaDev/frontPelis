@@ -21,6 +21,12 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="anio" class="form-label">Año de Estreno:</label>
+                    <input type="number" class="form-control bg-secondary text-white border-0" id="anio"
+                        [(ngModel)]="pelicula.anio" name="anio" required />
+                </div>
+
+                <div class="mb-3">
                     <label for="director" class="form-label">Director:</label>
                     <input type="text" class="form-control bg-secondary text-white border-0" id="director"
                         [(ngModel)]="pelicula.director" name="director" required />

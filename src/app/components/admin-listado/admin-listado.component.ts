@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-listado',
-  imports: [RouterLink,CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './admin-listado.component.html',
   styleUrl: './admin-listado.component.css'
 })

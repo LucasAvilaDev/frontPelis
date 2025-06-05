@@ -29,7 +29,7 @@ export class RoleGuardService implements CanActivate {
     console.log('Token:', token);
 
     if (!token) {
-      this.router.navigate(['home']);
+      this.router.navigate(['login']);
       return false;
     }
 
@@ -44,7 +44,7 @@ export class RoleGuardService implements CanActivate {
       !this.auth.isAuthenticated() || 
       actualRoleInToken !== expectedRole // o tokenPayload.tipo
     ) {
-      this.router.navigate(['home']);
+      this.router.navigate(['login']);
       return false;
     }
 

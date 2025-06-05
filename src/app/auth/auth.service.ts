@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginRequest } from './models/login-request.model';
-import { JwtHelperService } from '@auth0/angular-jwt'; // 👈 importá esto
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../environments/environment';
 
 

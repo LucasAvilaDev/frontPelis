@@ -1,6 +1,16 @@
 <!-- admin-dashboard.component.html -->
 <div class="admin-layout d-flex">
   <main class="p-4 flex-grow-1">
-    <router-outlet></router-outlet> <!-- ESTO ES CLAVE -->
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Panel de Administración</h1>
+        <a (click)="logout()" class="btn btn-primary">Cerrar sesion</a>
+      </div>
+      <p>Bienvenido al panel de administración. Aquí puedes gestionar las películas y categorías.</p>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Listado</h3>
+        <a [routerLink]="['/admin/crear']" class="btn btn-success">Nueva Película</a>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
   </main>
-</div>
