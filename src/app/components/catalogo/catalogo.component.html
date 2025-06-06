@@ -12,13 +12,12 @@
             ★
           </span>
         </button>
-
-        <!-- Imagen -->
         <img [src]="pelicula.fotoPelicula" class="card-img-top" [alt]="pelicula.titulo">
-
-        <!-- Contenido -->
         <div class="card-body">
-          <h5 class="card-title">{{ pelicula.titulo }}</h5>
+          <a class = "text-decoration-none" [routerLink]="['/pelicula', pelicula.id_pelicula]"
+             class="movie-card-link">
+             <h5 class="card-title">{{ pelicula.titulo }}</h5>
+          </a>
         </div>
       </div>
     </div>

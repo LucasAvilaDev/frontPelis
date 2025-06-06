@@ -1,30 +1,62 @@
+<!-- Ya tienes estas fuentes, así que se mantienen -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <header class="main-header">
     <div class="header-content">
-        <h1 class="logo">PelisPw2</h1>
-        <nav>
+        <a [routerLink]="['/home']" class="logo-link">
+            <h1 class="logo">🎬 PelisPw2</h1>
+        </a>
+        <nav class="main-nav">
             <ul>
-                <li><a [routerLink]="['/home']">Inicio</a></li>
-                <li><a [routerLink]="['/catalogo']">Catalogo</a></li>
-                <li><a [routerLink]="['/favoritas']">Favoritas</a></li>
-                <li><button type="button" class="btn"(click)="logout()">Cerrar Sesión</button></li>
+                <li><a [routerLink]="['/home']" routerLinkActive="active-link">Inicio</a></li>
+                <li><a [routerLink]="['/catalogo']" routerLinkActive="active-link">Catálogo</a></li>
+                <li><a [routerLink]="['/favoritas']" routerLinkActive="active-link">Mis Favoritas</a></li>
             </ul>
         </nav>
+        <div class="user-actions">
+            <button type="button" class="btn btn-logout" (click)="logout()">Cerrar Sesión</button>
+        </div>
     </div>
 </header>
 
-<section class="section">
-    <h2 class="section-title">Películas Recomendadas</h2>
-    <div class="movie-list">
-        <a *ngFor="let pelicula of peliculas | async"
-           [routerLink]="['/pelicula', pelicula.id_pelicula]"
-           class="movie-card-link">
-            <div class="movie-card">
-                <img [src]="pelicula.fotoPelicula" [alt]="pelicula.titulo">
-                </div>
-        </a>
-    </div>
-</section>
+<main class="main-content">
+    <section class="hero-section" style="background-image: url('URL_DE_IMAGEN_GRANDE_ARGENTINA_1985');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2 class="hero-title">Argentina, 1985</h2>
+            <p class="hero-description">
+                Inspirada en la historia real de los fiscales Julio Strassera y Luis Moreno Ocampo, que en 1985 se atrevieron a investigar y enjuiciar a la dictadura militar más sangrienta de la historia argentina.
+            </p>
+            <a [routerLink]="['/pelicula', 'ID_PELICULA_ARGENTINA_1985']" class="btn btn-primary">
+                <i class="fas fa-play"></i> Ver ahora
+            </a>
+        </div>
+    </section>
 
-<footer>
-    <p>&copy; 2025 MiFlix. Todos los derechos reservados.</p>
+    <section class="movie-carousel-section">
+        <h3 class="section-title">Tendencias ahora</h3>
+        <div class="movie-carousel">
+            <a *ngFor="let pelicula of peliculas | async"
+               [routerLink]="['/pelicula', pelicula.id_pelicula]"
+               class="movie-card-link">
+                <div class="movie-card">
+                    <img [src]="pelicula.fotoPelicula" [alt]="pelicula.titulo">
+                    <div class="movie-card-overlay">
+                        <p>{{ pelicula.titulo }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-content">
+        <p>&copy; 2025 PelisPw2 | Creado para fines académicos.</p>
+        <div class="footer-links">
+            <a href="#">Términos de servicio</a>
+            <a href="#">Política de privacidad</a>
+            <a href="#">Contacto</a>
+        </div>
+    </div>
 </footer>
