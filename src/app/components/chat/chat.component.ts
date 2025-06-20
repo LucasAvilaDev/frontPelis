@@ -21,6 +21,8 @@ export class ChatComponent implements OnInit {
   this.chatService.startConnection().then(() => {
     const chatId = 'chat123'; // o desde la ruta
     this.chatService.unirseChat(chatId);
+    this.connectionStarted = true; // Conexión iniciada correctamente
+    console.log('Conexión SignalR iniciada correctamente');
 
     this.chatService.onMensajeRecibido((mensaje) => {
       this.mensajes.push(mensaje);
@@ -31,7 +33,8 @@ export class ChatComponent implements OnInit {
 
   enviar() {
     // Solo enviar si la conexión está iniciada
-    if (this.connectionStarted && this.mensaje.trim()) {
+    if (this.connectionStarted) {
+      console.log('Enviando mensaje:', this.mensaje);
       const remitente = 'cliente'; // o 'admin', según el rol
       const chatId = 'chat123'; // Asegúrate de usar el mismo ID de chat
       this.chatService.enviarMensaje(chatId, remitente, this.mensaje);
