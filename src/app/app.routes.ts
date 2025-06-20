@@ -10,6 +10,7 @@ import { CatalogoComponent } from './components/catalogo/catalogo.component';
 import { FavoritasComponent } from './components/favoritas/favoritas.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminListadoComponent } from './components/admin-listado/admin-listado.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,10 @@ export const routes: Routes = [
   { path: 'catalogo', component: CatalogoComponent, canActivate: [AuthGuardService] },
   { path: 'pelicula/:id', component: FichaPeliculaComponent, canActivate: [AuthGuardService] },
   { path: 'favoritas', component: FavoritasComponent, canActivate: [AuthGuardService] },
+    {
+    path: 'chat/:chatId',
+    component: ChatComponent, canActivate: [AuthGuardService]
+  },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
