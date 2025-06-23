@@ -1,47 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
-
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule ],
   templateUrl: './chat.component.html',
-  styleUrl: './chat.component.css'
+  styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
-  mensaje: string = '';
-  mensajes: any[] = [];
-  private connectionStarted: boolean = false; // <-- Nueva bandera
+  currentMessage: string = '';
+  currentUser: string = '';
+  selectedUser: string = '';
+  chatMessages: { user: string; message: string }[] = [];
+  onlineUsers: string[] = [];
 
   constructor(private chatService: ChatService) {}
 
   ngOnInit(): void {
-  this.chatService.startConnection().then(() => {
-    const chatId = 'chat123'; // o desde la ruta
-    this.chatService.unirseChat(chatId);
-    this.connectionStarted = true; // Conexión iniciada correctamente
-    console.log('Conexión SignalR iniciada correctamente');
+    this.currentUser = this.chatService.nombre;
 
-    this.chatService.onMensajeRecibido((mensaje) => {
-      this.mensajes.push(mensaje);
+    this.chatService.currentMessage.subscribe((message) => {
+      if (message.user && message.message) {
+        this.chatMessages.push(message);
+      }
     });
+
+    this.chatService.currentActiveUsers.subscribe((users) => {
+      if (users) {
+        this.onlineUsers = users;
+      }
+    });
+  }
+
+  selectUser(userId: string) {
+  this.selectedUser = userId;
+  const chatId = this.getChatId(this.currentUser, userId);
+
+  this.chatService.getChatHistory(chatId).then(messages => {
+    this.chatMessages = messages;
   });
 }
 
+getChatId(user1: string, user2: string): string {
+  return [user1, user2].sort().join('_');
+}
 
-  enviar() {
-    // Solo enviar si la conexión está iniciada
-    if (this.connectionStarted) {
-      console.log('Enviando mensaje:', this.mensaje);
-      const remitente = 'cliente'; // o 'admin', según el rol
-      const chatId = 'chat123'; // Asegúrate de usar el mismo ID de chat
-      this.chatService.enviarMensaje(chatId, remitente, this.mensaje);
-      this.mensaje = '';
-    } else if (!this.connectionStarted) {
-      console.warn('Conexión SignalR no establecida. No se puede enviar el mensaje.');
-      // Podrías deshabilitar el botón de enviar o mostrar un spinner
-    }
+
+  sendMessage(): void {
+    this.chatService.sendMessage(this.selectedUser, this.currentMessage);
+    this.currentMessage = '';
+  }
+
+  getFilteredUsers(): string[] {
+    return this.onlineUsers.filter((user) => user !== this.currentUser);
   }
 }

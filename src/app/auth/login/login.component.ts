@@ -26,6 +26,7 @@ export class LoginComponent {
         next: (res) => {
           console.log(res)
           localStorage.setItem('token', res.token);
+          localStorage.setItem('nombre', res.nombre);
           localStorage.setItem('id_usuario', res.id_usuario.toString());
           if (res.tipo === 'admin') {
           this.router.navigate(['/admin/peliculas']);

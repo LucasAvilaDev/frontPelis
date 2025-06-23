@@ -1,11 +1,24 @@
-<div class="chat-window">
-  <div *ngFor="let msg of mensajes" class="mensaje">
-    <strong>{{ msg.remitente }}:</strong> {{ msg.contenido }}
-    <span class="timestamp">{{ msg.timestamp | date:'shortTime' }}</span>
-  </div>
-</div>
+<div class="chat-wrapper">
 
-<div class="input-area">
-  <input [(ngModel)]="mensaje" placeholder="Escribí tu mensaje..." />
-  <button (click)="enviar()">Enviar</button>
+  <!-- Encabezado -->
+  <div class="chat-header">
+    <h2>Conectado como: {{ currentUser }}</h2>
+    <select [(ngModel)]="selectedUser">
+      <option *ngFor="let user of getFilteredUsers()" [value]="user">{{ user }}</option>
+    </select>
+  </div>
+
+  <!-- Mensajes -->
+  <div class="chat-messages">
+    <div *ngFor="let msg of chatMessages" [ngClass]="{'my-message': msg.user === currentUser, 'their-message': msg.user !== currentUser}">
+      <div class="bubble">{{ msg.message }}</div>
+    </div>
+  </div>
+
+  <!-- Input de mensaje -->
+  <div class="chat-input">
+    <input [(ngModel)]="currentMessage" placeholder="Escribe un mensaje..." (keyup.enter)="sendMessage()">
+    <button (click)="sendMessage()">Enviar</button>
+  </div>
+
 </div>

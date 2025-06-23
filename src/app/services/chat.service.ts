@@ -1,57 +1,71 @@
-// src/app/services/chat.service.ts
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChatService {
-  private hubConnection!: signalR.HubConnection;
-  private messageSubject = new Subject<any>();
+  private hubConnection: signalR.HubConnection;
+  private messageSource = new BehaviorSubject<{ user: string; message: string }>({ user: '', message: '' });
+  private activeUsers = new BehaviorSubject<string[]>([]);
+  currentMessage = this.messageSource.asObservable();
+  currentActiveUsers = this.activeUsers.asObservable();
+
+  public userId: string;
+  public nombre: string;
 
   constructor() {
-    // NO crear aquí la conexión aún
-  }
+    this.userId = localStorage.getItem('id_usuario') || '';
+    this.nombre = localStorage.getItem('nombre') || '';
 
-  startConnection(): Promise<void> {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:5080/chatHub')
-      .withAutomaticReconnect()
+      .withUrl(`http://localhost:5080/chatHub?userId=${this.userId}`)
       .build();
 
-    // Configurar los eventos después de construir la conexión
-    this.hubConnection.on('RecibirMensaje', (chatId: string, remitente: string, mensaje: string) => {
-      this.messageSubject.next({ chatId, remitente, mensaje });
-    });
-
-    this.hubConnection.onclose(error => {
-      console.error('Conexión SignalR cerrada:', error);
-    });
-
-    return this.hubConnection.start()
+    this.hubConnection
+      .start()
       .then(() => {
-        console.log('✅ SignalR Hub Connection Started!');
+        console.log('Connection started');
+        this.requestActiveUsers();
       })
-      .catch(err => {
-        console.error('❌ Error al iniciar conexión SignalR:', err);
-      });
+      .catch((err) => console.log('Error while starting connection: ' + err));
+
+    this.hubConnection.on('ReceiveMessage', (user: string, message: string) => {
+      this.messageSource.next({ user, message });
+    });
+
+    this.hubConnection.on('MessageSentConfirmation', (receiverId: string, message: string, chatId: string) => {
+  this.messageSource.next({ user: this.userId, message });
+});
+
+
+    this.hubConnection.on('ActiveUsers', (userIds: string[]) => {
+      this.activeUsers.next(userIds);
+    });
   }
 
-  public unirseChat(chatId: string): Promise<void> {
-    return this.hubConnection.invoke('UnirseChat', chatId)
-      .catch(err => console.error('Error al unirse al chat:', err));
+  sendMessage(receiverId: string, message: string) {
+    this.hubConnection
+      .invoke('SendMessage', this.userId, receiverId, message)
+      .catch((err) => console.error(err));
   }
 
-  public enviarMensaje(chatId: string, remitente: string, mensaje: string): Promise<void> {
-    return this.hubConnection.invoke('EnviarMensaje', chatId, remitente, mensaje)
-      .catch(err => console.error('Error al enviar mensaje:', err));
+  requestActiveUsers() {
+    this.hubConnection
+      .invoke('GetActiveUsers')
+      .catch((err) => console.error(err));
   }
 
-  public onMensajeRecibido(callback: (mensaje: any) => void): void {
-    this.messageSubject.asObservable().subscribe(callback);
-  }
+  getChatHistory(chatId: string): Promise<{ user: string; message: string }[]> {
+  return this.hubConnection
+    .invoke('GetChatHistory', chatId)
+    .then((messages: any[]) => {
+      return messages.map(m => ({
+        user: m.remitente,
+        message: m.contenido
+      }));
+    });
+}
 
-  public stopConnection(): Promise<void> {
-    return this.hubConnection.stop();
-  }
 }

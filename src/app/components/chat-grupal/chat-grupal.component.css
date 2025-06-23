@@ -1,0 +1,41 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chat-mensajes {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+}
+
+.mensaje {
+  margin-bottom: 8px;
+}
+
+.hora {
+  float: right;
+  font-size: 0.8em;
+  color: #888;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+}
+
+.chat-input button {
+  margin-left: 10px;
+}

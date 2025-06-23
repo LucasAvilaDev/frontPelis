@@ -2,13 +2,21 @@
     <div class="row g-4">
         <div class="col-md-4">
             <div class="card bg-dark text-white h-100 border-0 shadow">
-                <img [src]="pelicula?.fotoPelicula" [alt]="pelicula?.titulo" class="card-img-top img-fluid rounded-3" style="max-height: 450px; object-fit: cover;">
+                <img [src]="pelicula?.fotoPelicula" [alt]="pelicula?.titulo" class="card-img-top img-fluid rounded-3"
+                    style="max-height: 450px; object-fit: cover;">
                 <div class="card-body">
                     <h3 class="card-title text-danger mb-3">Sinopsis de la Película</h3>
                     <p class="card-text">{{ pelicula?.descripcion }}</p>
                 </div>
             </div>
         </div>
+
+        <div class="mt-5" *ngIf="pelicula">
+            <h4 class="text-light mb-3">Chat en vivo con otros espectadores</h4>
+            <app-chat-grupal [chatId]="pelicula.id_pelicula.toString()" [remitente]="nombre">
+            </app-chat-grupal>
+        </div>
+
 
         <div class="col-md-8">
             <div class="card bg-dark text-white h-100 border-0 shadow">

@@ -17,7 +17,7 @@ export const routes: Routes = [
     path: 'admin', component: AdminDashboardComponent, children: [
       { path: 'crear', component: PeliculaFormularioComponent, canActivate: [RoleGuardService], data: { expectedRole: 'admin' } },
       { path: 'editar/:id', component: PeliculaFormularioComponent, canActivate: [RoleGuardService], data: { expectedRole: 'admin' } },
-      { path: 'peliculas',  component: AdminListadoComponent,  canActivate: [RoleGuardService], data: { expectedRole: 'admin' }},
+      { path: 'peliculas', component: AdminListadoComponent, canActivate: [RoleGuardService], data: { expectedRole: 'admin' } },
     ]
   },
   { path: 'register', component: RegisterComponent },
@@ -26,10 +26,8 @@ export const routes: Routes = [
   { path: 'catalogo', component: CatalogoComponent, canActivate: [AuthGuardService] },
   { path: 'pelicula/:id', component: FichaPeliculaComponent, canActivate: [AuthGuardService] },
   { path: 'favoritas', component: FavoritasComponent, canActivate: [AuthGuardService] },
-    {
-    path: 'chat/:chatId',
-    component: ChatComponent, canActivate: [AuthGuardService]
-  },
+  { path: 'chat',
+    component: ChatComponent, canActivate: [AuthGuardService]},
 
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

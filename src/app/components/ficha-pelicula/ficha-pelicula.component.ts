@@ -3,26 +3,32 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Pelicula } from '../../models/pelicula.model';
 import { PeliculaService } from '../../services/pelicula.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ChatGrupalComponent } from '../chat-grupal/chat-grupal.component';
 
 @Component({
   selector: 'app-ficha-pelicula',
   templateUrl: './ficha-pelicula.component.html',
   imports: [
     RouterModule,
-    CommonModule, // Asegúrate de que esté aquí
+    CommonModule,
+    FormsModule,
+    ChatGrupalComponent // Asegúrate de que esté aquí
   ],
   styleUrls: ['./ficha-pelicula.component.css']
 })
 export class FichaPeliculaComponent implements OnInit {
   pelicula: Pelicula | undefined;
-  router: any;
+  nombre: string = ''; // <-- Nombre del remitente
 
   constructor(
     private route: ActivatedRoute,
     private peliculaService: PeliculaService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
+    this.nombre = localStorage.getItem('nombre') || 'Invitado';
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.peliculaService.getMovie(id).subscribe(
       (data) => {
@@ -33,6 +39,5 @@ export class FichaPeliculaComponent implements OnInit {
       }
     );
   }
-
-
 }
+
