@@ -13,7 +13,7 @@
 
         <div class="mt-5" *ngIf="pelicula">
             <h4 class="text-light mb-3">Chat en vivo con otros espectadores</h4>
-            <app-chat-grupal [chatId]="pelicula.id_pelicula.toString()" [remitente]="nombre">
+            <app-chat-grupal [chatId]="pelicula.id_pelicula.toString()" [remitente]="userId">
             </app-chat-grupal>
         </div>
 

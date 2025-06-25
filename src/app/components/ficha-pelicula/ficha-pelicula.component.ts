@@ -19,7 +19,8 @@ import { ChatGrupalComponent } from '../chat-grupal/chat-grupal.component';
 })
 export class FichaPeliculaComponent implements OnInit {
   pelicula: Pelicula | undefined;
-  nombre: string = ''; // <-- Nombre del remitente
+    public userId = localStorage.getItem('id_usuario') ?? '';
+
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +28,6 @@ export class FichaPeliculaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.nombre = localStorage.getItem('nombre') || 'Invitado';
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.peliculaService.getMovie(id).subscribe(

@@ -35,4 +35,6 @@ export class ChatGrupalService {
   onMensaje(callback: (msg: any) => void) {
     this.mensajeSubject.asObservable().subscribe(callback);
   }
+
+  
 }

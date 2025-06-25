@@ -12,5 +12,22 @@
         <a [routerLink]="['/admin/crear']" class="btn btn-success">Nueva Película</a>
       </div>
     </div>
+
+    <div class="usuarios-activos">
+  <h3>Usuarios en línea</h3>
+  <ul>
+    <li *ngFor="let userId of activeUsers">
+      <button (click)="abrirChatCon(userId)">Chatear con {{ userId }}</button>
+    </li>
+  </ul>
+</div>
+
+<div class="chats-abiertos">
+  <app-chat *ngFor="let userId of chatsAbiertos"
+            [supportUserId]="userId"
+            (closeChatEvent)="cerrarChat(userId)">
+  </app-chat>
+</div>
+
     <router-outlet></router-outlet>
   </main>

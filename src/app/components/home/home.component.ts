@@ -5,16 +5,18 @@ import { PeliculaService } from '../../services/pelicula.service';
 import { Pelicula } from '../../models/pelicula.model';
 import { Observable } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
+import { ChatComponent } from '../chat/chat.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule,RouterModule, ChatComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit { // Implementa OnInit
   peliculas!: Observable<Pelicula[]>; // Declara peliculas$ como Observable
+mostrarChat: boolean = true;
 
 
   constructor(private router: Router, private peliculaService: PeliculaService) {}
@@ -27,5 +29,9 @@ export class HomeComponent implements OnInit { // Implementa OnInit
     localStorage.clear()
     this.router.navigate(['/login']);
   }
+
+  cerrarChat(): void {
+  this.mostrarChat = false;
+}
 }
 

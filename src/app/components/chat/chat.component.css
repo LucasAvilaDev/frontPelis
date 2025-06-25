@@ -1,82 +1,49 @@
-.chat-wrapper {
+.chat-container {
+  border: 1px solid #ccc;
+  width: 300px;
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Ocupa toda la pantalla */
-  max-width: 600px;
-  margin: auto;
-  border: 1px solid #ccc;
-  font-family: sans-serif;
+  height: 400px;
 }
 
 .chat-header {
+  background-color: #2e8b57;
+  color: white;
   padding: 10px;
-  background-color: #ededed;
-  border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .chat-messages {
   flex: 1;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
+  padding: 10px;
   overflow-y: auto;
-  background-color: #f9f9f9;
 }
 
 .chat-input {
-  padding: 10px;
   display: flex;
-  gap: 10px;
+  gap: 5px;
+  padding: 10px;
   border-top: 1px solid #ccc;
-  background-color: #fff;
 }
 
 .chat-input input {
   flex: 1;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  outline: none;
+  padding: 5px;
 }
 
-.chat-input button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 20px;
-  background-color: #128C7E;
-  color: white;
-  cursor: pointer;
-}
-
-/* Estilos de burbujas */
-.bubble {
-  padding: 10px 14px;
-  border-radius: 18px;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  line-height: 1.4;
-}
-
-.my-message {
-  align-self: flex-end;
-  margin-bottom: 8px;
-}
-
-.my-message .bubble {
+.own {
+  text-align: right;
   background-color: #dcf8c6;
-  color: #000;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-.their-message {
-  align-self: flex-start;
-  margin-bottom: 8px;
-}
-
-.their-message .bubble {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  color: #000;
+.other {
+  text-align: left;
+  background-color: #f1f0f0;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
 }
