@@ -53,6 +53,12 @@ export class ChatService {
       })));
   }
 
+  async ensureConnectionStarted(): Promise<void> {
+  if (this.hubConnection.state !== signalR.HubConnectionState.Connected) {
+    await this.hubConnection.start();
+  }
+}
+
   requestActiveUsers() {
     return this.hubConnection.invoke('GetActiveUsers');
   }

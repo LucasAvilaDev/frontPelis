@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-chat',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
@@ -19,9 +20,11 @@ export class ChatComponent implements OnInit {
 
   constructor(private chatService: ChatService) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.currentUser = this.chatService.userId;
     const chatId = this.getChatId(this.currentUser, this.supportUserId);
+
+    await this.chatService.ensureConnectionStarted(); // <-- Esto evita el error
 
     this.chatService.getChatHistory(chatId).then(history => {
       this.chatMessages = history;
@@ -34,10 +37,11 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  sendMessage(): void {
+  async sendMessage(): Promise<void> {
     const text = this.currentMessage.trim();
     if (!text) return;
 
+    await this.chatService.ensureConnectionStarted(); // también acá, por si se reconectó
     this.chatService.sendMessage(this.supportUserId, text);
     this.currentMessage = '';
   }
