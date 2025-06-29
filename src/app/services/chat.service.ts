@@ -54,7 +54,12 @@ export class ChatService {
   }
 
   async ensureConnectionStarted(): Promise<void> {
-  if (this.hubConnection.state !== signalR.HubConnectionState.Connected) {
+  while (this.hubConnection.state === signalR.HubConnectionState.Connecting ||
+         this.hubConnection.state === signalR.HubConnectionState.Reconnecting) {
+    await new Promise(resolve => setTimeout(resolve, 100)); // esperar 100ms
+  }
+
+  if (this.hubConnection.state === signalR.HubConnectionState.Disconnected) {
     await this.hubConnection.start();
   }
 }
