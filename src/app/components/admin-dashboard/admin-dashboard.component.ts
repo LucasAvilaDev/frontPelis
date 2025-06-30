@@ -13,15 +13,14 @@ import { CommonModule } from '@angular/common';
 })
 export class AdminDashboardComponent {
 
-    activeUsers: string[] = [];
+  activeUsers: string[] = [];
   chatsAbiertos: string[] = [];
   adminId = localStorage.getItem('id_usuario') ?? '';
 
-  constructor(private chatService: ChatService, private router: Router) {}
+  constructor(private chatService: ChatService, private router: Router) { }
 
   ngOnInit(): void {
     this.chatService.currentUsers$.subscribe(users => {
-      // Excluir al admin
       this.activeUsers = users.filter(u => u !== this.adminId);
     });
   }

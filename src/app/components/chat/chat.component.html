@@ -1,7 +1,7 @@
 <div class="chat-container">
   <div class="chat-header">
     <span>Soporte en línea</span>
-    <button (click)="closeChat()">✖</button>
+    <button class="btn" (click)="closeChat()">✖</button>
   </div>
 
   <div class="chat-messages">
@@ -14,6 +14,6 @@
 
   <div class="chat-input">
     <input [(ngModel)]="currentMessage" placeholder="Escribí un mensaje..." (keyup.enter)="sendMessage()" />
-    <button (click)="sendMessage()">Enviar</button>
+    <button class="btn"(click)="sendMessage()">Enviar</button>
   </div>
 </div>

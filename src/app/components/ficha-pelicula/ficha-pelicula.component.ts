@@ -5,6 +5,7 @@ import { PeliculaService } from '../../services/pelicula.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatGrupalComponent } from '../chat-grupal/chat-grupal.component';
+import { CategoriaService } from '../../services/categoria.service';
 
 @Component({
   selector: 'app-ficha-pelicula',
@@ -19,13 +20,15 @@ import { ChatGrupalComponent } from '../chat-grupal/chat-grupal.component';
 })
 export class FichaPeliculaComponent implements OnInit {
   pelicula: Pelicula | undefined;
-    public userId = localStorage.getItem('id_usuario') ?? '';
+  genero: string = '';
+  public userId = localStorage.getItem('id_usuario') ?? '';
 
 
   constructor(
     private route: ActivatedRoute,
-    private peliculaService: PeliculaService
-  ) {}
+    private peliculaService: PeliculaService,
+    private categoriaService: CategoriaService
+  ) { }
 
   ngOnInit(): void {
 
@@ -33,8 +36,14 @@ export class FichaPeliculaComponent implements OnInit {
     this.peliculaService.getMovie(id).subscribe(
       (data) => {
         this.pelicula = data;
+        this.categoriaService.obtenerCategoriaPorId(this.pelicula.id_categoria).subscribe(
+          (categoria) => {
+            this.genero = categoria.nombre;
+            console.log('Género de la película:', this.genero);
+          }
+        );
       },
-      (error) => {
+      (error: any) => {
         console.error('Error al obtener la película', error);
       }
     );

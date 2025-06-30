@@ -12,12 +12,13 @@
         <a [routerLink]="['/admin/crear']" class="btn btn-success">Nueva Película</a>
       </div>
     </div>
+    <router-outlet></router-outlet>
 
     <div class="usuarios-activos">
   <h3>Usuarios en línea</h3>
   <ul>
     <li *ngFor="let userId of activeUsers">
-      <button (click)="abrirChatCon(userId)">Chatear con {{ userId }}</button>
+      <button class="btn btn-outline-primary" (click)="abrirChatCon(userId)">Chatear con {{ userId }}</button>
     </li>
   </ul>
 </div>
@@ -29,5 +30,4 @@
   </app-chat>
 </div>
 
-    <router-outlet></router-outlet>
   </main>

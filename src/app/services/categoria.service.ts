@@ -16,6 +16,10 @@ export class CategoriaService {
   obtenerCategorias(): Observable <any> {
     return this.http.get(this.api)
   }
+
+  obtenerCategoriaPorId(id: number): Observable <any> {
+    return this.http.get(`${this.api}/${id}`);
+  }
 }
 
 
